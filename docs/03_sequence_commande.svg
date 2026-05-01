@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 720" font-family="system-ui, sans-serif">
+  <style>
+    .title { font-size: 18px; font-weight: 700; fill: #1b4332; }
+    .actor { font-size: 13px; font-weight: 700; fill: #1a1f1c; }
+    .lifeline { stroke: #5a6b5e; stroke-width: 1; stroke-dasharray: 5,3; }
+    .activation { fill: #2d6a4f; opacity: 0.8; }
+    .msg { stroke: #1b4332; stroke-width: 1.5; fill: none; }
+    .msglabel { font-size: 11px; fill: #1a1f1c; }
+    .ret { stroke: #1b4332; stroke-width: 1; stroke-dasharray: 4,2; fill: none; }
+    .alt { fill: #fff; stroke: #d68c45; stroke-width: 1.5; stroke-dasharray: 5,3; }
+    .altlabel { font-size: 11px; font-weight: 700; fill: #d68c45; }
+    .frame { fill: #fdfdfb; stroke: #2d6a4f; stroke-width: 1; }
+  </style>
+
+  <text x="490" y="28" text-anchor="middle" class="title">LocalMarché — Diagramme de séquence : Passer une commande</text>
+
+  <!-- Lifelines header -->
+  <rect x="40"  y="55" width="120" height="36" class="frame" rx="3"/>
+  <text x="100" y="78" text-anchor="middle" class="actor">Consommateur</text>
+
+  <rect x="220" y="55" width="120" height="36" class="frame" rx="3"/>
+  <text x="280" y="78" text-anchor="middle" class="actor">Navigateur</text>
+
+  <rect x="400" y="55" width="120" height="36" class="frame" rx="3"/>
+  <text x="460" y="78" text-anchor="middle" class="actor">order.php</text>
+
+  <rect x="580" y="55" width="120" height="36" class="frame" rx="3"/>
+  <text x="640" y="78" text-anchor="middle" class="actor">Order::create</text>
+
+  <rect x="760" y="55" width="180" height="36" class="frame" rx="3"/>
+  <text x="850" y="78" text-anchor="middle" class="actor">MySQL</text>
+
+  <!-- Lifelines -->
+  <line x1="100" y1="91" x2="100" y2="700" class="lifeline"/>
+  <line x1="280" y1="91" x2="280" y2="700" class="lifeline"/>
+  <line x1="460" y1="91" x2="460" y2="700" class="lifeline"/>
+  <line x1="640" y1="91" x2="640" y2="700" class="lifeline"/>
+  <line x1="850" y1="91" x2="850" y2="700" class="lifeline"/>
+
+  <!-- 1. Click "Commander" -->
+  <line x1="100" y1="120" x2="278" y2="120" class="msg" marker-end="url(#arrow)"/>
+  <text x="190" y="115" text-anchor="middle" class="msglabel">1. Clic « Commander »</text>
+
+  <!-- 2. GET /order.php?produit=X -->
+  <line x1="280" y1="150" x2="458" y2="150" class="msg" marker-end="url(#arrow)"/>
+  <text x="370" y="145" text-anchor="middle" class="msglabel">2. GET /order.php?produit=X</text>
+  <rect x="455" y="150" width="10" height="100" class="activation"/>
+
+  <!-- 3. require_login() -->
+  <line x1="465" y1="180" x2="465" y2="195" class="msg"/>
+  <line x1="465" y1="195" x2="490" y2="195" class="msg"/>
+  <line x1="490" y1="195" x2="490" y2="210" class="msg"/>
+  <line x1="490" y1="210" x2="465" y2="210" class="msg" marker-end="url(#arrow)"/>
+  <text x="525" y="200" class="msglabel">3. require_login()</text>
+
+  <!-- alt session valide -->
+  <rect x="60" y="230" width="900" height="430" class="alt" rx="4"/>
+  <text x="80" y="250" class="altlabel">alt [session valide]</text>
+
+  <!-- 4. Affichage formulaire -->
+  <line x1="460" y1="280" x2="282" y2="280" class="ret" marker-end="url(#arrow)"/>
+  <text x="370" y="275" text-anchor="middle" class="msglabel">4. HTML formulaire quantité</text>
+
+  <!-- 5. POST quantite -->
+  <line x1="100" y1="320" x2="278" y2="320" class="msg" marker-end="url(#arrow)"/>
+  <text x="190" y="315" text-anchor="middle" class="msglabel">5. Saisie quantité + valider</text>
+
+  <line x1="280" y1="350" x2="458" y2="350" class="msg" marker-end="url(#arrow)"/>
+  <text x="370" y="345" text-anchor="middle" class="msglabel">6. POST /order.php (CSRF + qté)</text>
+
+  <rect x="455" y="350" width="10" height="240" class="activation"/>
+
+  <!-- 7. csrf_check -->
+  <line x1="465" y1="380" x2="465" y2="395" class="msg"/>
+  <line x1="465" y1="395" x2="490" y2="395" class="msg"/>
+  <line x1="490" y1="395" x2="490" y2="410" class="msg"/>
+  <line x1="490" y1="410" x2="465" y2="410" class="msg" marker-end="url(#arrow)"/>
+  <text x="525" y="400" class="msglabel">7. csrf_check()</text>
+
+  <!-- 8. Order::createFromCart -->
+  <line x1="465" y1="430" x2="638" y2="430" class="msg" marker-end="url(#arrow)"/>
+  <text x="552" y="425" text-anchor="middle" class="msglabel">8. createFromCart()</text>
+  <rect x="635" y="430" width="10" height="120" class="activation"/>
+
+  <!-- 9. SELECT produit -->
+  <line x1="645" y1="460" x2="848" y2="460" class="msg" marker-end="url(#arrow)"/>
+  <text x="745" y="455" text-anchor="middle" class="msglabel">9. SELECT id, prix, dispo FROM products</text>
+  <line x1="850" y1="480" x2="647" y2="480" class="ret" marker-end="url(#arrow)"/>
+  <text x="745" y="475" text-anchor="middle" class="msglabel">10. ligne produit</text>
+
+  <!-- 11. INSERT order + items -->
+  <line x1="645" y1="510" x2="848" y2="510" class="msg" marker-end="url(#arrow)"/>
+  <text x="745" y="505" text-anchor="middle" class="msglabel">11. INSERT orders + order_items (TX)</text>
+  <line x1="850" y1="530" x2="647" y2="530" class="ret" marker-end="url(#arrow)"/>
+  <text x="745" y="525" text-anchor="middle" class="msglabel">12. orderId</text>
+
+  <!-- 13. Retour orderId -->
+  <line x1="635" y1="560" x2="467" y2="560" class="ret" marker-end="url(#arrow)"/>
+  <text x="552" y="555" text-anchor="middle" class="msglabel">13. orderId</text>
+
+  <!-- 14. Redirect -->
+  <line x1="460" y1="585" x2="282" y2="585" class="ret" marker-end="url(#arrow)"/>
+  <text x="370" y="580" text-anchor="middle" class="msglabel">14. 302 Redirect /orders.php</text>
+
+  <line x1="280" y1="610" x2="102" y2="610" class="ret" marker-end="url(#arrow)"/>
+  <text x="190" y="605" text-anchor="middle" class="msglabel">15. Page « Mes commandes »</text>
+
+  <!-- alt session invalide -->
+  <line x1="60" y1="640" x2="960" y2="640" class="alt"/>
+  <text x="80" y="635" class="altlabel">[session invalide]</text>
+  <line x1="460" y1="675" x2="282" y2="675" class="ret" marker-end="url(#arrow)"/>
+  <text x="370" y="670" text-anchor="middle" class="msglabel">→ Redirect /login.php</text>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1b4332"/>
+    </marker>
+  </defs>
+</svg>

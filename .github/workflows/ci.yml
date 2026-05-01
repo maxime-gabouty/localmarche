@@ -1,0 +1,44 @@
+name: CI — Quality & Green IT
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  php-lint:
+    name: PHP syntax check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: Lint all PHP files
+        run: |
+          find . -name "*.php" -not -path "./vendor/*" -print0 \
+            | xargs -0 -n1 php -l
+
+  green-budget:
+    name: Green IT budget check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check static assets size
+        run: |
+          CSS_SIZE=$(stat -c%s frontend/css/style.css)
+          JS_SIZE=$(stat -c%s frontend/js/main.js)
+          echo "CSS: $CSS_SIZE bytes"
+          echo "JS:  $JS_SIZE bytes"
+          # Budget : CSS ≤ 10 Ko, JS ≤ 2 Ko
+          test $CSS_SIZE -le 10240 || (echo "❌ CSS dépasse 10 Ko"; exit 1)
+          test $JS_SIZE  -le  2048 || (echo "❌ JS dépasse 2 Ko";  exit 1)
+          echo "✅ Budget Green IT respecté"
+      - name: Ensure no Google Fonts / CDN imports
+        run: |
+          if grep -rE "fonts\.googleapis|fonts\.gstatic|cdn\.jsdelivr|cdnjs\.cloudflare" frontend/ ; then
+            echo "❌ Dépendance externe détectée"
+            exit 1
+          fi
+          echo "✅ Aucune dépendance externe"
