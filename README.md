@@ -7,11 +7,10 @@ Plateforme web de circuits courts mettant en relation directe **producteurs loca
 Site **éco-conçu** — pages < 100 Ko, aucune dépendance JavaScript externe,
 polices système, pas d'image décorative.
 
-> Mini-projet TI616 Numérique Durable — EFREI Paris 2025-2026
 
 ##  URL de déploiement
 
-> _À compléter après déploiement sur Railway_ : `https://localmarche.up.railway.app`
+> https://localmarche.up.railway.app/index.php
 
 ##  Équipe
 
