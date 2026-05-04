@@ -167,7 +167,3 @@ et une estimation CO₂ par visite (méthode Sustainable Web Design : 1.8 g CO�
 
 Le rapport PDF complet (sections 1 à 9, mesures avant/après EcoIndex,
 captures Lighthouse, tableau de tests fonctionnels) est disponible dans `/docs/`.
-
-##  Licence
-
-Projet académique — EFREI Paris 2025-2026.
