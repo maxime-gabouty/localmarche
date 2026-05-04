@@ -21,7 +21,7 @@ polices système, pas d'image décorative.
 | Gabouty | Authentification, sessions, sécurité |
 | Sitbon | Base de données, déploiement, mesures Green IT |
 
-## 🛠️ Stack technique et justifications Green IT
+##  Stack technique et justifications Green IT
 
 | Couche | Technologie | Justification Green IT | Alternative écartée |
 |--------|-------------|------------------------|---------------------|
@@ -139,7 +139,7 @@ chore(db): ajout d'un index sur products.disponible
 
 Types autorisés : `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `green`.
 
-## 🌱 Engagements Green IT vérifiables
+##  Engagements Green IT vérifiables
 
 | Indicateur | Cible | Vérification |
 |------------|-------|--------------|
