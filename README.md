@@ -1,4 +1,4 @@
-# 🌿 LocalMarché
+#  LocalMarché
 
 Plateforme web de circuits courts mettant en relation directe **producteurs locaux**
 (maraîchers, artisans, agriculteurs) et **consommateurs de proximité**.
@@ -7,11 +7,11 @@ polices système, pas d'image décorative.
 
 > Mini-projet TI616 Numérique Durable — EFREI Paris 2025-2026
 
-## 🌐 URL de déploiement
+##  URL de déploiement
 
 > _À compléter après déploiement sur Railway_ : `https://localmarche.up.railway.app`
 
-## 👥 Équipe
+##  Équipe
 
 | Membre | Rôle principal |
 |--------|----------------|
@@ -33,7 +33,7 @@ polices système, pas d'image décorative.
 **Aucune dépendance Composer ou npm en V1** : l'autoload est manuel via `require_once`,
 les chargements sont explicites et minimaux.
 
-## 📁 Structure du dépôt
+##  Structure du dépôt
 
 ```
 localmarche/
@@ -80,7 +80,7 @@ localmarche/
 └── README.md
 ```
 
-## 🚀 Lancer le projet localement
+##  Lancer le projet localement
 
 ### Prérequis
 - PHP 8.1+
@@ -125,7 +125,7 @@ Tous les comptes du jeu de données ont pour mot de passe **`demo1234`**
 > php -r "echo password_hash('votre_mdp', PASSWORD_BCRYPT);"
 > ```
 
-## ✅ Conventions de commit
+##  Conventions de commit
 
 ```
 type(scope): description courte
@@ -152,7 +152,7 @@ Types autorisés : `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, 
 Le **footer affiche en temps réel** le poids HTML+CSS+JS de la page courante
 et une estimation CO₂ par visite (méthode Sustainable Web Design : 1.8 g CO₂ / Mo).
 
-## 🔒 Sécurité
+##  Sécurité
 
 - Mots de passe hashés avec **bcrypt** (`password_hash` / `password_verify`)
 - Toutes les requêtes SQL sont **paramétrées** (PDO, anti-injection)
@@ -162,11 +162,11 @@ et une estimation CO₂ par visite (méthode Sustainable Web Design : 1.8 g CO�
 - Vérification des droits avant chaque action sensible (producteur ne peut pas modifier le produit d'un autre)
 - Aucune variable sensible dans le dépôt (`.env` dans `.gitignore`)
 
-## 📊 Rapport final
+##  Rapport final
 
 Le rapport PDF complet (sections 1 à 9, mesures avant/après EcoIndex,
 captures Lighthouse, tableau de tests fonctionnels) est disponible dans `/docs/`.
 
-## 📜 Licence
+##  Licence
 
 Projet académique — EFREI Paris 2025-2026.
